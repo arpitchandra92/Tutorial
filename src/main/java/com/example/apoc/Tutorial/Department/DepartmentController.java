@@ -1,9 +1,7 @@
 package com.example.apoc.Tutorial.Department;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -35,5 +33,18 @@ public class DepartmentController {
     {
         return departmentService.mixing();
     }
+
+    @DeleteMapping("/deleteDepartment/{did}")
+    public void deleteDepartment(@PathVariable("did") Long departID)
+    {
+        departmentService.deleteDepartment(departID);
+    }
+
+    @PutMapping("/updateDepartment/{did}")
+    public void updateDepartment(@PathVariable("did") Long departID, @RequestParam(required = false) String name,@RequestParam(required = false) Integer number )
+    {
+        departmentService.updateDepratment(departID, name,number);
+    }
+
 
 }
